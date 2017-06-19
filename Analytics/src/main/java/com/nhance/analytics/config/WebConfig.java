@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.nhance.livestream.controller")
+@ComponentScan(basePackages = "com.nhance.analytics.controller")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Override public void configureMessageConverters(List<HttpMessageConverter<?>> converters){
