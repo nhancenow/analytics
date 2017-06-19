@@ -75,7 +75,7 @@ public class HttpUtil {
 		ObjectWriter ow = new ObjectMapper().writer();
 		
 		try {
-			sendPost("http://127.0.0.1:8080/Livestreaming/send", ow.writeValueAsString(req));
+			sendPost("http://127.0.0.1:8080/Analytics/send", ow.writeValueAsString(req));
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
