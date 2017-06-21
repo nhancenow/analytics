@@ -19,7 +19,7 @@ public class SpringMongoConfig {
 	
     public @Bean
     MongoDbFactory mongoDbFactory() throws Exception {
-       return new SimpleMongoDbFactory(new MongoClient(Keys.MONGODB_HOST), Keys.MONGODB_DB);
+       return new SimpleMongoDbFactory(new MongoClient(Constants.MONGODB_HOST), Constants.MONGODB_DB);
     }
 
     public @Bean

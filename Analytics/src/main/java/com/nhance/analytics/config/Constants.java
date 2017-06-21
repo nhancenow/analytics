@@ -4,7 +4,7 @@
  */
 package com.nhance.analytics.config;
 
-public class Keys {
+public class Constants {
 	
 	public static final String TOPOLOGY_NAME                  	= "EventTopology";
 	

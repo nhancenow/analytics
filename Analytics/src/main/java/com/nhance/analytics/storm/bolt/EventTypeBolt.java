@@ -14,7 +14,7 @@ import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
 
-import com.nhance.analytics.config.Keys;
+import com.nhance.analytics.config.Constants;
 
 public class EventTypeBolt extends BaseRichBolt {
 
@@ -23,7 +23,7 @@ public class EventTypeBolt extends BaseRichBolt {
 
 	public void execute(Tuple tuple) {
 		String value = tuple.getString(0);
-		collector.emit(Keys.MONGODB_STREAM, new Values("Event", value));
+		collector.emit(Constants.MONGODB_STREAM, new Values("Event", value));
 		System.out.println("<EventTypeBolt> data emit : " + value);
 		collector.ack(tuple);
 	}
@@ -34,7 +34,7 @@ public class EventTypeBolt extends BaseRichBolt {
 	}
 
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream(Keys.MONGODB_STREAM, new Fields("Event", "data"));
+		declarer.declareStream(Constants.MONGODB_STREAM, new Fields("Event", "data"));
 	}
 
 }

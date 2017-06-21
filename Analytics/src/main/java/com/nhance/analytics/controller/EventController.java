@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.nhance.analytics.config.Keys;
+import com.nhance.analytics.config.Constants;
 import com.nhance.analytics.model.Event;
 import com.nhance.analytics.service.EventProducer;
 import com.nhance.analytics.service.MongoEventService;
@@ -48,7 +48,7 @@ public class EventController {
 			ObjectWriter ow = new ObjectMapper().writer();
 
 			// Event producer
-			eventProducer.send(Keys.KAFKA_TOPIC, ow.writeValueAsString(event));
+			eventProducer.send(Constants.KAFKA_TOPIC, ow.writeValueAsString(event));
 
 		} catch (IOException e) {
 			LOG.error("Invalid request:" + e.getStackTrace());
