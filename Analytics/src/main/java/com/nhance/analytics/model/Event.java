@@ -4,73 +4,58 @@
  */
 package com.nhance.analytics.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.Date;
+import java.util.Map;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Document(collection = "events")
 public class Event {
 	@Id
 	private String id;
+	@Indexed
 	private String eventName;
-	private String eventCategory;
-	private String pageId;
-	private String userName;
-	private String emailId;
-	private String mobile;
-	private String ipAddress;
+	@Indexed
+	@Field("properties")
+	private Map<String, Object> properties;
+	private Date createdTime = new Date();
+	
 	public String getId() {
 		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
 	}
 	public String getEventName() {
 		return eventName;
 	}
-	public String getEventCategory() {
-		return eventCategory;
+	public Date getCreatedTime() {
+		return createdTime;
 	}
-	public String getPageId() {
-		return pageId;
+	public Map<String, Object> getProperties() {
+		return properties;
 	}
-	public String getUserName() {
-		return userName;
-	}
-	public String getEmailId() {
-		return emailId;
-	}
-	public String getMobile() {
-		return mobile;
-	}
-	public String getIpAddress() {
-		return ipAddress;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
 	}
-	public void setEventCategory(String eventCategory) {
-		this.eventCategory = eventCategory;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
-	public void setPageId(String pageId) {
-		this.pageId = pageId;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-	public void setIpAddress(String ipAddress) {
-		this.ipAddress = ipAddress;
+	public void setProperties(Map<String, Object> properties) {
+		this.properties = properties;
 	}
 	@Override
 	public String toString() {
-		return "ServiceEventRequest [id=" + id + ", eventName=" + eventName + ", eventCategory=" + eventCategory
-				+ ", pageId=" + pageId + ", userName=" + userName + ", emailId=" + emailId + ", mobile=" + mobile
-				+ ", ipAddress=" + ipAddress + "]";
+		return "Event [id=" + id + ", eventName=" + eventName + ", createdTime=" + createdTime + ", properties="
+				+ properties + "]";
 	}
 	
 }

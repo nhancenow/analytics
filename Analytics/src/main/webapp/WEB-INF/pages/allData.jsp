@@ -13,14 +13,21 @@
 <h2 style="color:#36A8F9">Live Streaming</h2>
 	<table>
 			<c:forEach var="event" items="${eventList}">
-				<tr><td>${event.eventName}</td>
-				<td>${event.eventCategory}</td>
-				<td>${event.pageId}</td>
-				<td>${event.userName}</td>
+				<%-- <td>${event.id}</td> --%>
+				<tr><td>${event.eventName} </td>
+				<td>${event.createdTime} </td>
+				
+				<c:forEach var="entry" items="${event.properties}">
+				 <%--  Key: <c:out value="${entry.key}"/> --%>
+				  <td><c:out value="${entry.value}"/></td>
+				</c:forEach>
+				
+				<%-- <td>${event.pageId} <c:out value="${event.properties['pageId']}"/>  </td> --%>
+			<%-- 	<td>${event.userName}</td>
 				<td>${event.emailId}</td>
 				<td>${event.mobile}</td>
-				<td>${event.ipAddress}</td></tr>
-				
+				<td>${event.ipAddress}</td></tr> --%>
+				</tr>
 			</c:forEach>
 	</table>
 </body>

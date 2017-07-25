@@ -10,6 +10,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -63,19 +66,24 @@ public class HttpUtil {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-
-		Event req = new Event();
-		req.setEventName("Page_Visit");
-		req.setEventCategory("Click");
-		req.setPageId("Documents");
-		req.setUserName("vinoth");
-		req.setEmailId("vinoth@gmail.com");
-		req.setMobile("9035480940");
-		req.setIpAddress("127.0.0.1");
 		ObjectWriter ow = new ObjectMapper().writer();
-		
 		try {
-			sendPost("http://127.0.0.1:8080/Analytics/send", ow.writeValueAsString(req));
+			/*for (int i = 0; i < 5000; i++) {*/
+				Event event = new Event();
+				event.setEventName("Page_Visit");
+				Map<String, Object> prop = new HashMap<String, Object>();
+				prop.put("CustomerCode", "13000007");
+				prop.put("MenuName", "Dashboard");
+				prop.put("Name", "vinoth");
+				prop.put("EmailId", "vinoth@gmail.com");
+				prop.put("MobileNumber", "9620521051");
+				prop.put("BrandCode", "BC_1004");
+				prop.put("BrandName", "IPhone");
+				prop.put("Os", "Web");
+				prop.put("TrackEventTime", new Date());
+				event.setProperties(prop);
+				sendPost("http://127.0.0.1:8080/Analytics/send", ow.writeValueAsString(event));
+//			}
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
